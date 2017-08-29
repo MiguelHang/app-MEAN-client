@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
+
 import { User } from './models/user';
 import { UserService } from './services/user.services';
 import  { GLOBAL } from './services/global';
@@ -21,6 +24,8 @@ export class AppComponent implements OnInit{
   public url: string;
 
   constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
     private _userService:UserService
   ){
     this.user = new User('','','','','','ROLE_USER','');
@@ -91,6 +96,7 @@ export class AppComponent implements OnInit{
     localStorage.clear();
     this.identity = null;
     this.token = null;
+    this._router.navigate(['/']);
   }
 
   onSubmitRegister(){
