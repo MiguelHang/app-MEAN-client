@@ -27,7 +27,7 @@ export class ArtistEditComponent implements OnInit{
     private _userService: UserService,
     private _artistService: ArtistService
   ){
-    this.title = 'Crear artista';
+    this.title = 'Editar artista';
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
@@ -38,34 +38,64 @@ export class ArtistEditComponent implements OnInit{
 
   ngOnInit(){
     console.log('Artist-add component cargado');
-    //llarmar al metodo que trae artista por su id
+    this.getArtist()
+  }
+
+  getArtist(){
+    this._route.params.forEach( (params: Params) => {
+      let id = params['id'];
+
+      this._artistService.getArtist(this.token, id).subscribe(
+        response => {
+          this.artist = response.artist;
+          if(!response.artist){
+            this._router.navigate(['/']);
+          }else{
+            this.artist = response.artist;
+          }
+        },
+        error => {
+          let errorMessage = <any>error;
+
+          if(errorMessage != null){
+            let body = JSON.parse(error._body)
+            // this.alertMessage = error._body.message;
+
+            console.log(error);
+          }
+        }
+      )
+    });
   }
 
   onSubmit(){
     console.log(this.artist);
-    this._artistService.addArtist(this.token, this.artist).subscribe(
-      response => {
-        this.artist = response.artist;
+    this._route.params.forEach( (params: Params) => {
+      let id = params['id'];
 
-        if(!response.artist){
-          this.alertMessage = 'Error en el servidor';
-        }else{
-          this.alertMessage = 'El artista se ha creado';
+      this._artistService.editArtist(this.token, this.artist, id).subscribe(
+        response => {
+          // this.artist = response.artist;
 
-          this.artist = response.artist
-          // this._router.navigate(['/editar-artista'], response.artist._id);
+          if(!response.artist){
+            this.alertMessage = 'Error en el servidor';
+          }else{
+            this.alertMessage = 'El artista se ha actualizado';
+            // this.artist = response.artist
+            // this._router.navigate(['/editar-artista'], response.artist._id);
+          }
+        },
+        error => {
+          let errorMessage = <any>error;
+
+          if(errorMessage != null){
+            // let body = JSON.parse(error._body)
+            this.alertMessage = error._body.message;
+
+            console.log(error);
+          }
         }
-      },
-      error => {
-        let errorMessage = <any>error;
-
-        if(errorMessage != null){
-          // let body = JSON.parse(error._body)
-          this.alertMessage = error._body.message;
-
-          console.log(error);
-        }
-      }
-    );
-  }
+      );
+  });
+}
 }

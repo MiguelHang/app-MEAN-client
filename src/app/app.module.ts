@@ -8,8 +8,11 @@ import{ routing, appRoutingProviders} from './app.routing';
 import{ HomeComponent } from './components/home.component';
 import { AppComponent } from './app.component';
 import{ UserEditComponent } from './components/user-edit.component';
+
 import{ ArtistListComponent } from './components/artists-list.component';
 import{ ArtistAddComponent } from './components/artist-add.component';
+import{ ArtistEditComponent } from './components/artist-edit.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import{ ArtistAddComponent } from './components/artist-add.component';
     AppComponent,
     UserEditComponent,
     ArtistListComponent,
-    ArtistAddComponent
+    ArtistAddComponent,
+    ArtistEditComponent
   ],
   imports: [
     BrowserModule,
