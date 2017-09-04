@@ -12,6 +12,7 @@ import{ UserEditComponent } from './components/user-edit.component';
 import{ ArtistListComponent } from './components/artists-list.component';
 import{ ArtistAddComponent } from './components/artist-add.component';
 import{ ArtistEditComponent } from './components/artist-edit.component';
+import{ ArtistDetailComponent } from './components/artist-detail.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import{ ArtistEditComponent } from './components/artist-edit.component';
     UserEditComponent,
     ArtistListComponent,
     ArtistAddComponent,
-    ArtistEditComponent
+    ArtistEditComponent,
+    ArtistDetailComponent
   ],
   imports: [
     BrowserModule,
