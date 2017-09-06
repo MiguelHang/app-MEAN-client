@@ -15,14 +15,15 @@ import{ ArtistDetailComponent } from './components/artist-detail.component';
 
 //import Album
 import{ AlbumAddComponent } from './components/album-add.component';
-
-
-
+import{ AlbumEditComponent } from './components/album-edit.component';
+import{ AlbumDetailComponent } from './components/album-detail.component';
 
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'album-detail/:id', component: AlbumDetailComponent},
   {path: 'album-add/:artist', component: AlbumAddComponent},
+  {path: 'album-edit/:id', component: AlbumEditComponent},
   {path: 'artists/:page', component: ArtistListComponent},
   {path: 'artist-add', component: ArtistAddComponent},
   {path: 'artist-edit/:id', component: ArtistEditComponent},

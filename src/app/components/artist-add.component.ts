@@ -26,7 +26,7 @@ export class ArtistAddComponent implements OnInit{
     private _userService: UserService,
     private _artistService: ArtistService
   ){
-    this.title = 'Crear artista';
+    this.title = 'Editar album';
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;

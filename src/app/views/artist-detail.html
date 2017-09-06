@@ -13,6 +13,26 @@
 
   </div>
   <div id="galley-albums" *ngIf="albums && albums !== null">
-    <!-- listar albums -->
+    <ul class="album-list">
+      <li *ngFor="let album of albums" class="col-lg-4 album-item">
+        <div class="album-image">
+          <img src="{{url + 'get-image-album/'+ album.image}}" alt="">
+        </div>
+
+        <div class="album-name">
+          <p><a [routerLink] = "['/album-detail', album._id]">{{album.title}}</a></p>
+          <p><a [routerLink] = "['/artist-detail', album.artist._id]">{{album.artist.name}}</a></p>
+          <div class="buttons" *ngIf = "identity.role == 'ROLE_ADMIN'">
+            <a [routerLink] = "['/album-edit', album._id]" class="btn btn-sm btn-warning">Editar</a>
+            <a (click)="onDeleteConfirm(album._id)" class="btn btn-sm btn-danger">Eliminar</a>
+          </div>
+        </div>
+        <div class="sure" *ngIf="confirmado == album._id">
+          <a (click)="onDeleteAlbum(album._id)" class="btn btn-sm btn-danger">Eliminar</a>
+          <a (click)="onCancelAlbum()" class="btn btn-sm btn-primary">Cancelar</a>
+        </div>
+
+      </li>
+    </ul>
   </div>
 </div>

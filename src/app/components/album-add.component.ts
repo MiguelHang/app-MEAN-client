@@ -9,7 +9,7 @@ import { Artist } from '../models/artist';
 import { Album } from '../models/album';
 
 @Component({
-  selector:'artist-edit',
+  selector:'album-add',
   templateUrl:'../views/album-add.html',
   providers: [UserService, ArtistService, AlbumService]
 })
@@ -59,7 +59,7 @@ export class AlbumAddComponent implements OnInit{
           this.alertMessage = 'El album se ha creado';
 
           this.album = response.album
-          // this._router.navigate(['/editar-album'], response.artist._id);
+          this._router.navigate(['/album-edit', response.album._id]);
         }
       },
       error => {

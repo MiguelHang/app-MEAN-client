@@ -21,5 +21,17 @@
       <input type="text" class="form-control" #year="ngModel" name="year" [(ngModel)]="album.year" required="">
       <span *ngIf = "!year.valid && year.touched" class="text-danger">El año es obligatorio</span>
     </p>
+
+    <div *ngIf="isEdit">
+      <div class="album_image_for_edit" *ngIf = "album.image && album.image != 'null'">
+        <img src="{{url + 'get-image-album/' + album.image}}" width="100">
+      </div>
+
+      <p>
+        <label>Imagen del album:</label>
+        <input type="file" placeholder="Subir image" (change) = "fileChangeEvent($event)">
+      </p>
+    </div>
+
     <input type="submit" value="{{title}}" [disabled]="!formAlbum.form.valid" class="btn btn-success"/>
 </form>
