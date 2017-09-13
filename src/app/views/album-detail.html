@@ -5,10 +5,27 @@
     </div>
     <div class="data">
       <h1>{{album.title}}</h1>
+      <p><strong>{{album.artist.name}}</strong></p>
       <p>{{album.year}}</p>
       <p>{{album.description}}</p>
 
-      <a href="#" class="btn btn-default" *ngIf ="identity.role == 'ROLE_ADMIN'"> Añadir cación</a>
+      <a [routerLink]="['/song-add', album._id]" class="btn btn-default" *ngIf ="identity.role == 'ROLE_ADMIN'"> Añadir canción</a>
     </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="gallery-songs" *ngIf="songs">
+    <ul id="songs-list">
+      <li *ngFor="let song of songs" class="song-item">
+        <div class="title">
+          <a href="#" class="btn btn-success"><i class="glyphicon glyphicon-play" aria-hidden="true"></i></a>
+          {{song.number + '. ' + song.name + ' - ' + song.duration}}
+          <div class="buttons" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+            <a routerLink="['song-edit', song._id]" class="btn btn-warning"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></a>
+            <a routerLink="['song-edit', song._id]" class="btn btn-danger"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>

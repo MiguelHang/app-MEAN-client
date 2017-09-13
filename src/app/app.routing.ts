@@ -18,9 +18,16 @@ import{ AlbumAddComponent } from './components/album-add.component';
 import{ AlbumEditComponent } from './components/album-edit.component';
 import{ AlbumDetailComponent } from './components/album-detail.component';
 
+//import song
+import{ SongAddComponent } from './components/song-add.component';
+import{ SongEditComponent } from './components/song-edit.component';
+
+
+
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: 'song-edit/:id', component: SongEditComponent},
+  {path: 'song-add/:album', component: SongAddComponent},
   {path: 'album-detail/:id', component: AlbumDetailComponent},
   {path: 'album-add/:artist', component: AlbumAddComponent},
   {path: 'album-edit/:id', component: AlbumEditComponent},
@@ -29,7 +36,9 @@ const appRoutes: Routes = [
   {path: 'artist-edit/:id', component: ArtistEditComponent},
   {path: 'artist-detail/:id', component: ArtistDetailComponent},
   {path: 'mis-datos', component: UserEditComponent},
+  {path: '', component: HomeComponent},
   {path: '**', component: HomeComponent}
+
 ];
 
 export const appRoutingProviders: any[] = [];

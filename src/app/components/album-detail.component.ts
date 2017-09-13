@@ -4,17 +4,20 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import  { GLOBAL } from '../services/global';
 import  { UserService } from '../services/user.services';
 import  { AlbumService } from '../services/album.services';
+import  { SongService } from '../services/song.services';
 import { Album } from '../models/album';
+import { Song } from '../models/song';
 
 
 @Component({
   selector:'album-detail',
   templateUrl:'../views/album-detail.html',
-  providers: [UserService, AlbumService]
+  providers: [UserService, AlbumService, SongService]
 })
 
 export class AlbumDetailComponent implements OnInit{
   public album : Album;
+  public songs: Song[];
   public identity;
   public token;
   public url: string;
@@ -24,7 +27,8 @@ export class AlbumDetailComponent implements OnInit{
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-    private _albumService: AlbumService
+    private _albumService: AlbumService,
+    private _songService: SongService
   ){
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
@@ -46,25 +50,25 @@ export class AlbumDetailComponent implements OnInit{
             this._router.navigate(['/']);
           }else{
             this.album = response.album;
+          
+            this._songService.getSongs(this.token, id).subscribe(
+              response => {
+                if(!response.songs){
+                  this.alertMessage = 'Este album no tiene canciones';
+                }else{
+                  this.songs= response.songs;
+                }
+              }
+              ,error => {
+                let errorMessage = <any>error;
 
-            // this._albumService.getAlbums(this.token, response.artist._id).subscribe(
-            //   response => {
-            //     if(!response.albums){
-            //       this.alertMessage = 'Este artista no tiene albums';
-            //     }else{
-            //       this.albums = response.albums;
-            //     }
-            //   }
-            //   ,error => {
-            //     let errorMessage = <any>error;
-            //
-            //     if(errorMessage != null){
-            //       let body = JSON.parse(error._body)
-            //       // this.alertMessage = error._body.message;
-            //
-            //       console.log(error);
-            //     }
-            //   });
+                if(errorMessage != null){
+                  let body = JSON.parse(error._body)
+                  // this.alertMessage = error._body.message;
+
+                  console.log(error);
+                }
+              });
           }
         },
         error => {

@@ -1,37 +1,39 @@
-<h1>{{title}}</h1>
-<div *ngIf="alertMessage">
-  <div class="alert alert-info alert-dismissable">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong></strong>{{alertMessage}}
+<div class="col-lg-6" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+  <h1>{{title}}</h1>
+  <div *ngIf="alertMessage">
+    <div class="alert alert-info alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong></strong>{{alertMessage}}
+    </div>
   </div>
-</div>
-<form #formAlbum="ngForm" (ngSubmit)="onSubmit()">
-    <p>
-      <label>Titulo</label>
-      <input type="text" class="form-control" #albumTitle="ngModel" name="albumTitle" [(ngModel)]="album.title" required="">
-      <span *ngIf = "!albumTitle.valid && albumTitle.touched" class="text-danger">El título es obligatorio</span>
-    </p>
-    <p>
-      <label>Descripción</label>
-      <textarea class="form-control" #description="ngModel" name="description" [(ngModel)]="album.description" required=""></textarea>
-      <span *ngIf = "!description.valid && description.touched" class="text-danger">El nombre es obligatorio</span>
-    </p>
-    <p>
-      <label>Año</label>
-      <input type="text" class="form-control" #year="ngModel" name="year" [(ngModel)]="album.year" required="">
-      <span *ngIf = "!year.valid && year.touched" class="text-danger">El año es obligatorio</span>
-    </p>
+  <form #formAlbum="ngForm" (ngSubmit)="onSubmit()">
+      <p>
+        <label>Titulo</label>
+        <input type="text" class="form-control" #albumTitle="ngModel" name="albumTitle" [(ngModel)]="album.title" required="">
+        <span *ngIf = "!albumTitle.valid && albumTitle.touched" class="text-danger">El título es obligatorio</span>
+      </p>
+      <p>
+        <label>Descripción</label>
+        <textarea class="form-control" #description="ngModel" name="description" [(ngModel)]="album.description" required=""></textarea>
+        <span *ngIf = "!description.valid && description.touched" class="text-danger">El nombre es obligatorio</span>
+      </p>
+      <p>
+        <label>Año</label>
+        <input type="text" class="form-control" #year="ngModel" name="year" [(ngModel)]="album.year" required="">
+        <span *ngIf = "!year.valid && year.touched" class="text-danger">El año es obligatorio</span>
+      </p>
 
-    <div *ngIf="isEdit">
-      <div class="album_image_for_edit" *ngIf = "album.image && album.image != 'null'">
-        <img src="{{url + 'get-image-album/' + album.image}}" width="100">
+      <div *ngIf="isEdit">
+        <div class="album_image_for_edit" *ngIf = "album.image && album.image != 'null'">
+          <img src="{{url + 'get-image-album/' + album.image}}" width="100">
+        </div>
+
+        <p>
+          <label>Imagen del album:</label>
+          <input type="file" placeholder="Subir image" (change) = "fileChangeEvent($event)">
+        </p>
       </div>
 
-      <p>
-        <label>Imagen del album:</label>
-        <input type="file" placeholder="Subir image" (change) = "fileChangeEvent($event)">
-      </p>
-    </div>
-
-    <input type="submit" value="{{title}}" [disabled]="!formAlbum.form.valid" class="btn btn-success"/>
-</form>
+      <input type="submit" value="{{title}}" [disabled]="!formAlbum.form.valid" class="btn btn-success"/>
+  </form>
+</div>
