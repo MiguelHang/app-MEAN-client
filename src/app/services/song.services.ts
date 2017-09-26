@@ -59,7 +59,7 @@ export class SongService{
     }
   }
 
-  delteSong(token, id: string){
+  deleteSong(token, id: string){
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization':token

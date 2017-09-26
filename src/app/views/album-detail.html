@@ -21,7 +21,12 @@
           {{song.number + '. ' + song.name + ' - ' + song.duration}}
           <div class="buttons" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
             <a routerLink="['song-edit', song._id]" class="btn btn-warning"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></a>
-            <a routerLink="['song-edit', song._id]" class="btn btn-danger"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a>
+            <a (click)="onDeleteConfirm(song._id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a>
+          </div>
+
+          <div class="sure sure-song" *ngIf="confirmado == song._id">
+            <a (click)="onDeleteSong(song._id)" class="btn btn-danger">Eliminar</a>
+            <a (click)="onCancelSong()" class="btn btn-default">Cancelar</a>
           </div>
           <div class="clearfix"></div>
         </div>
