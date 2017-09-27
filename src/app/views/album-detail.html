@@ -17,7 +17,7 @@
     <ul id="songs-list">
       <li *ngFor="let song of songs" class="song-item">
         <div class="title">
-          <a href="#" class="btn btn-success"><i class="glyphicon glyphicon-play" aria-hidden="true"></i></a>
+          <a class="btn btn-success" (click)="startPlayer(song)"><i class="glyphicon glyphicon-play" aria-hidden="true"></i></a>
           {{song.number + '. ' + song.name + ' - ' + song.duration}}
           <div class="buttons" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
             <a routerLink="['song-edit', song._id]" class="btn btn-warning"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></a>

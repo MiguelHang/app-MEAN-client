@@ -1,7 +1,7 @@
 html, body{
   margin: 0px;
   height: 100%;
-  background: #eee
+  background: #eee;
 }
 
 .actived{
@@ -11,7 +11,7 @@ html, body{
 
 .central{
   height: 100%;
-  overflow-y: scroll;
+  width: 100%;
 }
 
 .sure{
@@ -41,6 +41,11 @@ html, body{
   color: white;
   background: #1c1c1f;
   height: 100%;
+  position: fixed;
+}
+
+.content{
+  margin-left: 16.6%;
 }
 
 .navigation a{
@@ -85,6 +90,8 @@ html, body{
   overflow: hidden;
 }
 
+/*artist detail*/
+
 .artist_image_for_edit img,
 .album_image_for_edit img{
   width: 150px;
@@ -95,7 +102,7 @@ html, body{
   padding: 0px;
   margin-top: 30px;
   list-style: none;
-  height: 600px;
+  min-height: 500px;
 }
 
 .artist-item, .album-item{
@@ -105,7 +112,14 @@ html, body{
   height: 317px;
   border: 1px solid #444;
   margin-left: 20px;
-  /*margin-top: 20px;*/
+
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.2s;
+  margin-top: 2%;
+}
+
+.artist-item:hover, .album-item:hover{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .artist-item .artist-image,
@@ -117,8 +131,7 @@ html, body{
 }
 
 .artist-item .artist-image img{
-  height: 33vh;
-  position: 50%;
+  height: 100%;
 }
 
 .artist-item .artist-name,
@@ -134,11 +147,15 @@ html, body{
 }
 
 .album-item .album-image img{
-  width: 100%;
+  height: 100%;
 }
 
 .album-item{
-    height: 357px
+    height: 357px;
+}
+
+.album-item:last-child{
+  margin-bottom: 10%;
 }
 
 #artist-head-card .image,
@@ -155,6 +172,8 @@ html, body{
   height: 150px;
 }
 
+/*Song*/
+
 #song-list{
   margin: 0px;
   padding: 0px;
@@ -164,6 +183,10 @@ html, body{
   list-style: none;
   border-bottom: 1px solid #ccc;
   padding-top: 3px;
+}
+
+.song-item:last-child{
+  margin-bottom: 10%;
 }
 
 .song-item .buttons {
@@ -188,12 +211,13 @@ html, body{
   padding: 20px;
   margin-left: -15px;
   border-left: 1px solid #444;
+  height: 12%;
 }
 
 .player .album-image{
   float:left;
-  width: 138px;
-  height: 105px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
 }
 
@@ -203,13 +227,13 @@ html, body{
 
 .player .audio-file{
   width: 85%;
-  height: 40px;
-  margin-top: 4px;
+  height: 20px;
   margin-left: 10px;
   float: left;
 }
 
 .player audio{
   width: 100%;
-  height: 40px;
+  height: 5px;
+  padding-bottom: 10%;
 }
