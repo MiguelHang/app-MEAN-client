@@ -7,7 +7,7 @@ import {GLOBAL} from '../services/global';
   template:`
       <div class='album-image'>
         <span *ngIf='song.album'>
-          <img id='play-image-album' src='{{url + 'get-image-album/' + song.album.image}}'>
+          <img id='play-image-album' src="{{url + 'get-image-album/' + song.album.image}}">
         </span>
         <span *ngIf='!song.album'>
         <img id='play-image-album' src='assets/images/default.png'>
@@ -44,5 +44,13 @@ export class PlayerComponent implements OnInit{
 
   ngOnInit(){
     console.log('Player cargado')
+
+    let song = JSON.parse(localStorage.getItem('soundSong'));
+
+    if(song){
+      this.song = song
+    }else{
+      this.song = new Song(1, "", "", "", "");
+    }
   }
 }
