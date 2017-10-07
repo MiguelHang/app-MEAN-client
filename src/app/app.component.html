@@ -3,27 +3,43 @@
     <a [routerLink] ="['/']">{{title}}</a>
   </h1>
   <nav id="navigation">
-    <a href="#" [routerLinkActive]="['actived']"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar</a>
-    <a [routerLink] ="['/artists', 1]" [routerLinkActive]="['actived']"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Artistas</a>
-    <a href="#" [routerLinkActive]="['actived']"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Albums</a>
+    <ul class="list-group">
+      <li class="list-user">
+        <a [routerLink]="['/mis-datos']" [routerLinkActive]="['actived']">
+          <span class="icon user-image"><img id="image-logged" class="img-circle" src="{{url + 'get-image-user/' + identity.image}}"/></span>
+          <span class="name user-name"> {{identity.name}}</span>
+        </a>
+      </li>
+      <li class="list-item">
+        <a [routerLinkActive]="['actived']">
+          <span class="glyphicon glyphicon-search icon" aria-hidden="true"></span>
+          <span class="name">Buscar</span>
+        </a>
+      </li>
+      <li class="list-item">
+        <a [routerLink] ="['/artists', 1]" [routerLinkActive]="['actived']">
+          <span class="glyphicon glyphicon-star icon" aria-hidden="true"></span>
+          <span class="name">Artistas</span>
+        </a>
+      </li>
+      <li class="list-item">
+        <a [routerLinkActive]="['actived']" [routerLinkActive]="['actived']">
+          <span class="glyphicon glyphicon-book icon" aria-hidden="true"></span>
+          <span class="name">Albums</span>
+        </a>
+      </li>
+      <li>
+        <a (click)="logout()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Salir</a>
+      </li>
+    </ul>
   </nav>
-  <nav class="user_logged">
-    <div class="user-image">
-      <img id="image-logged" class="img-circle" src="{{url + 'get-image-user/' + identity.image}}"/>
-    </div>
-    <span id="identity_name">
-      {{identity.name}}
-    </span>
-    <a [routerLink]="['/mis-datos']" [routerLinkActive]="['actived']"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Mis datos</a>
-    <a (click)="logout()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Salir</a>
-  </nav>
+  <player *ngIf="identity"></player>
 </div>
 
 
 <div [class.hidden]="!identity" class="content col-lg-10 col-md-10 col-sm-10">
   <router-outlet></router-outlet>
   <div class="clearfix"></div>
-  <player class="player" *ngIf="identity"></player>
 </div>
 
 <div class="col-lg-11" *ngIf="!identity">

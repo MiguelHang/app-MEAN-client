@@ -5,8 +5,9 @@ html, body{
 }
 
 .actived{
-  border-bottom: 4px solid #84BD00;
-  padding-bottom: 4px;
+  border-left: 4px solid #84BD00;
+  padding-left: 4px;
+  background: #15151e;
 }
 
 .central{
@@ -36,8 +37,9 @@ html, body{
   display: block;
 }
 
+
 .navigation{
-  text-align: center;
+  /*text-align: center;*/
   color: white;
   background: #1c1c1f;
   height: 100%;
@@ -55,6 +57,37 @@ html, body{
   display: block;
   text-decoration: none;
 }
+
+.list-user .user-image{
+  width: 20%;
+  margin-right: 12.5%;
+}
+
+.list-user .user-name{
+  font-size: 16px;
+}
+
+#image-logged{
+    height: 30px;
+}
+
+.list-group{
+  list-style: none;
+}
+
+.list-item{
+  background: #1c1c1f;
+}
+
+.list-item .icon{
+  width: 20%;
+}
+
+.list-item .name{
+  width: 80%;
+  font-size: 16px;
+}
+
 .navigation a:hover{
   color: white;
   margin-top: 20px;
@@ -62,25 +95,25 @@ html, body{
   display: block;
   text-decoration: none;
 }
-.navigation .glyphicon{
+/*.navigation .glyphicon{
   font-size: 25px;
   display: block;
   width: 100%;
-}
+}*/
 
-.user_logged{
+/*.user_logged{
   background: #1c1c1f;
   position: absolute;
   bottom: 0px;
   border-top: 1px solid #444;
   width: 80%;
-}
+}*/
 
-.user_logged .glyphicon-log-out{
+/*.user_logged .glyphicon-log-out{
   font-size: 16px;
-}
+}*/
 
-.user_logged #image-logged{
+/*.user_logged #image-logged{
   background: #eee;
   border-radius: 100px;
   height: 57px;
@@ -88,7 +121,7 @@ html, body{
   margin: 0px auto;
   margin-top: 15px;
   overflow: hidden;
-}
+}*/
 
 /*artist detail*/
 
@@ -209,13 +242,9 @@ html, body{
 
 .player{
   background: #1c1c1f;
-  position: fixed;
-  width: 85.5%;
-  bottom: 0;
-  padding: 20px;
-  margin-left: -15px;
+  width: 100%;
   border-left: 1px solid #444;
-  /*height: 12%;*/
+  height: 12%;
 }
 
 .player .album-image{

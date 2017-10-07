@@ -5,29 +5,31 @@ import {GLOBAL} from '../services/global';
 @Component({
   selector: 'player',
   template:`
-      <div class='album-image'>
-        <span *ngIf='song.album'>
-          <img id='play-image-album' src="{{url + 'get-image-album/' + song.album.image}}">
-        </span>
-        <span *ngIf='!song.album'>
-        <img id='play-image-album' src='assets/images/default.png'>
-        </span>
-      </div>
-      <div class="audio-file">
-        <p>Reproduciendo</p>
-        <span id="play-song-title">
-          {{song.name}}
-        </span>
-        |
-        <span id="play-song-artist">
-          <span *ngIf='song.artist'>
-            {{song.album.artist.name}}
+      <div class='player'>
+        <div class='album-image'>
+          <span *ngIf='song.album'>
+            <img id='play-image-album' src="{{url + 'get-image-album/' + song.album.image}}">
           </span>
-        </span>
-        <audio controls id='player'>
-          <source id='mp3-source' src="{{url + 'get-song-file/' + song.file }}" type="audio/mpeg">
-          Tu navegador no es compatible
-        </audio>
+          <span *ngIf='!song.album'>
+          <img id='play-image-album' src='assets/images/default.png'>
+          </span>
+        </div>
+        <div class="audio-file">
+          <p>Reproduciendo</p>
+          <span id="play-song-title">
+            {{song.name}}
+          </span>
+          |
+          <span id="play-song-artist">
+            <span *ngIf='song.artist'>
+              {{song.album.artist.name}}
+            </span>
+          </span>
+          <audio controls id='player'>
+            <source id='mp3-source' src="{{url + 'get-song-file/' + song.file }}" type="audio/mpeg">
+            Tu navegador no es compatible
+          </audio>
+        </div>
       </div>
     `
 })
