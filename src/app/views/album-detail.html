@@ -1,8 +1,6 @@
 <div class="album-box" *ngIf="album">
   <div id="album-head-card">
-    <div class="image">
-      <img src="{{url+ 'get-image-album/'+ album.image}}" alt="image album">
-    </div>
+    <div class="image" [ngStyle]="{'background-image': 'url(' + url+ 'get-image-album/'+ album.image + ')'}"></div>
     <div class="data">
       <h1>{{album.title}}</h1>
       <p><strong>{{album.artist.name}}</strong></p>

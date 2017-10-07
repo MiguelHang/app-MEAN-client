@@ -15,10 +15,9 @@
   <div id="galley-albums" *ngIf="albums && albums !== null">
     <ul class="album-list">
       <li *ngFor="let album of albums" class="col-lg-4 album-item">
-        <div class="album-image">
-          <a [routerLink] = "['/album-detail', album._id]"><img src="{{url + 'get-image-album/'+ album.image}}" alt=""></a>
-        </div>
-
+        <a [routerLink] = "['/album-detail', album._id]">
+          <div class="album-image" [ngStyle]="{'background-image': 'url(' + url + 'get-image-album/'+ album.image + ')'}"></div>
+        </a>  
         <div class="album-name">
           <p><a [routerLink] = "['/album-detail', album._id]">{{album.title}}</a></p>
           <p><a [routerLink] = "['/artist-detail', album.artist._id]">{{album.artist.name}}</a></p>

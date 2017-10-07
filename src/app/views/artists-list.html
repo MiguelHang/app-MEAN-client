@@ -9,9 +9,9 @@
 <div class="clearfix"></div>
 <ul class="artists-list" *ngIf = "identity">
   <li *ngFor = "let artist of artists" class="col-lg-3 col-md-3 artist-item">
-    <div class="artist-image">
-      <a [routerLink] = "['/artist-detail', artist._id]"><img src="{{url +'get-image-artist/' + artist.image}}"></a>
-    </div>
+    <a [routerLink] = "['/artist-detail', artist._id]">
+      <div class="artist-image" [ngStyle]="{'background-image': 'url(' + url +'get-image-artist/' + artist.image + ')'}"></div>
+    </a>
     <div class="artist-name">
       <a [routerLink] = "['/artist-detail', artist._id]">{{artist.name}}</a>
       <div class="buttons" *ngIf = "identity.role == 'ROLE_ADMIN'">
