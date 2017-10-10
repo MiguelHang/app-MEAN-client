@@ -117,6 +117,7 @@ export class AlbumDetailComponent implements OnInit{
   }
 
   startPlayer(song){
+    console.log(song)
     let songPlayer = JSON.stringify(song);
     let filePath = this.url + 'get-song-file/' + song.file;
     let imagePath = this.url + 'get-image-album/' + song.album.image;

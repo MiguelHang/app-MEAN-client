@@ -34,6 +34,16 @@ export class SongService{
     return this._http.get(this.url + 'song/' + id, options).map( res => res.json());
   }
 
+  getNextSong(token, id: string, songNumber: number){
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+
+    let options = new RequestOptions({headers: headers});
+    return this._http.get(this.url + 'nextsong/' + id + '/' + songNumber, options).map( res => res.json());
+  }
+
   editSong(token, id: string, song: Song){
     let params = JSON.stringify(song);
     let headers = new Headers({
