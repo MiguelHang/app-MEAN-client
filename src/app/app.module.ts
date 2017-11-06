@@ -17,6 +17,7 @@ import{ ArtistDetailComponent } from './components/artist-detail.component';
 import{ AlbumAddComponent } from './components/album-add.component';
 import{ AlbumEditComponent } from './components/album-edit.component';
 import{ AlbumDetailComponent } from './components/album-detail.component';
+import{ AlbumListComponent } from './components/albums-list.component';
 
 import{ SongAddComponent } from './components/song-add.component';
 import{ SongEditComponent } from './components/song-edit.component';
@@ -34,6 +35,7 @@ import{ PlayerComponent} from './components/player.component';
     ArtistAddComponent,
     ArtistEditComponent,
     ArtistDetailComponent,
+    AlbumListComponent,
     AlbumAddComponent,
     AlbumEditComponent,
     AlbumDetailComponent,

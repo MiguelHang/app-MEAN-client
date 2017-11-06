@@ -7,7 +7,7 @@
       <li class="list-user">
         <a [routerLink]="['/mis-datos']" [routerLinkActive]="['actived']">
           <span class="icon user-image"><img id="image-logged" class="img-circle" src="{{url + 'get-image-user/' + identity.image}}"/></span>
-          <span class="name user-name"> {{identity.name}}</span>
+          <span class="name user-name" id="identity_name"> {{identity.name}}</span>
         </a>
       </li>
       <li class="list-item">
@@ -23,7 +23,7 @@
         </a>
       </li>
       <li class="list-item">
-        <a [routerLinkActive]="['actived']" [routerLinkActive]="['actived']">
+        <a [routerLink]="['/albums', 1]" [routerLinkActive]="['actived']">
           <span class="glyphicon glyphicon-book icon" aria-hidden="true"></span>
           <span class="name">Albums</span>
         </a>
