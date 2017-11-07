@@ -23,10 +23,10 @@ import{ AlbumListComponent } from './components/albums-list.component';
 import{ SongAddComponent } from './components/song-add.component';
 import{ SongEditComponent } from './components/song-edit.component';
 
-
-
+import{ SearcherComponent} from './components/searcher.component';
 
 const appRoutes: Routes = [
+  {path: 'search', component: SearcherComponent},
   {path: 'song-edit/:id', component: SongEditComponent},
   {path: 'song-add/:album', component: SongAddComponent},
   {path: 'albums/:page', component: AlbumListComponent},

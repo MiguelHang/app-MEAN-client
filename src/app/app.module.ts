@@ -24,6 +24,7 @@ import{ SongEditComponent } from './components/song-edit.component';
 
 import{ PlayerComponent} from './components/player.component';
 
+import{ SearcherComponent} from './components/searcher.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import{ PlayerComponent} from './components/player.component';
     AlbumDetailComponent,
     SongAddComponent,
     SongEditComponent,
-    PlayerComponent
+    PlayerComponent,
+    SearcherComponent
   ],
   imports: [
     BrowserModule,
