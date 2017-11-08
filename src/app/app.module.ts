@@ -18,6 +18,7 @@ import{ AlbumAddComponent } from './components/album-add.component';
 import{ AlbumEditComponent } from './components/album-edit.component';
 import{ AlbumDetailComponent } from './components/album-detail.component';
 import{ AlbumListComponent } from './components/albums-list.component';
+import{ AlbumComponent } from './components/album.component';
 
 import{ SongAddComponent } from './components/song-add.component';
 import{ SongEditComponent } from './components/song-edit.component';
@@ -29,6 +30,7 @@ import{ SearcherComponent} from './components/searcher.component';
 
 @NgModule({
   declarations: [
+    AlbumComponent,
     HomeComponent,
     AppComponent,
     UserEditComponent,

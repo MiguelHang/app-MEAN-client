@@ -18,6 +18,7 @@ import{ AlbumAddComponent } from './components/album-add.component';
 import{ AlbumEditComponent } from './components/album-edit.component';
 import{ AlbumDetailComponent } from './components/album-detail.component';
 import{ AlbumListComponent } from './components/albums-list.component';
+import{ AlbumComponent } from './components/album.component';
 
 //import song
 import{ SongAddComponent } from './components/song-add.component';

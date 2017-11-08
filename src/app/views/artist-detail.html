@@ -15,9 +15,9 @@
   <div id="galley-albums" *ngIf="albums && albums !== null">
     <ul class="album-list">
       <li *ngFor="let album of albums" class="col-lg-4 album-item">
-        <a [routerLink] = "['/album-detail', album._id]">
+        <!-- <a [routerLink] = "['/album-detail', album._id]">
           <div class="album-image" [ngStyle]="{'background-image': 'url(' + url + 'get-image-album/'+ album.image + ')'}"></div>
-        </a>  
+        </a>
         <div class="album-name">
           <p><a [routerLink] = "['/album-detail', album._id]">{{album.title}}</a></p>
           <p><a [routerLink] = "['/artist-detail', album.artist._id]">{{album.artist.name}}</a></p>
@@ -29,8 +29,8 @@
         <div class="sure" *ngIf="confirmado == album._id">
           <a (click)="onDeleteAlbum(album._id)" class="btn btn-sm btn-danger">Eliminar</a>
           <a (click)="onCancelAlbum()" class="btn btn-sm btn-primary">Cancelar</a>
-        </div>
-
+        </div> -->
+        <album [album]=album></album>
       </li>
     </ul>
   </div>
