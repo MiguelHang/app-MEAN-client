@@ -57,14 +57,14 @@ export class AlbumService{
     }
   }
 
-  getSearchAlbums(token, text){
+  getSearchAlbums(token, text: string){
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization':token
     });
     let options = new RequestOptions({headers:headers});
     if(text == null){
-      return false;
+      return this._http.get(this.url+'searchalbums/'+ '', options). map( res => res.json());;
     }else{
       return this._http.get(this.url+'searchalbums/'+ text, options). map( res => res.json());
     }

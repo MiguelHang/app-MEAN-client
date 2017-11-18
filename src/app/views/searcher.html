@@ -2,10 +2,18 @@
   <div class="col-md-10">
     <h1>Buscador</h1>
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Canción, Álbum, Artista...">
+      <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Canción, Álbum, Artista...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Buscar</button>
+        <button class="btn btn-default" type="button" (click)="searchAlbums()">Buscar</button>
       </span>
     </div>
   </div>
+  <div id="galley-albums" *ngIf="albums && albums !== null">
+    <ul class="album-list">
+      <li *ngFor="let album of albums" class="col-lg-4 album-item">
+        <album [album]=album (reloadParent)="reload($event)"></album>
+      </li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
 </div>
