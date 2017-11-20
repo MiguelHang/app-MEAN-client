@@ -45,6 +45,20 @@ export class ArtistService{
     return this._http.get(this.url + 'artist/' + id,options).map( res => res.json());
   }
 
+
+  getSearchArtist(token, text: string){
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let options = new RequestOptions({headers:headers});
+    if(text == null){
+      return this._http.get(this.url+'searchartists/'+ '', options). map( res => res.json());;
+    }else{
+      return this._http.get(this.url+'searchartists/'+ text, options). map( res => res.json());
+    }
+  }
+
   editArtist(token, artist: Artist, id: string){
     let params = JSON.stringify(artist);
     let headers = new Headers({

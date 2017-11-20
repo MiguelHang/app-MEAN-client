@@ -34,6 +34,19 @@ export class SongService{
     return this._http.get(this.url + 'song/' + id, options).map( res => res.json());
   }
 
+  getSearchSong(token, text: string){
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let options = new RequestOptions({headers:headers});
+    if(text == null){
+      return this._http.get(this.url+'searchsongs/'+ '', options). map( res => res.json());;
+    }else{
+      return this._http.get(this.url+'searchsongs/'+ text, options). map( res => res.json());
+    }
+  }
+
   getNextSong(token, id: string, songNumber: number){
     let headers = new Headers({
       'Content-Type':'application/json',
