@@ -1,5 +1,5 @@
 <div class="col-xs-12">
-  <div class="col-md-10">
+  <div class="col-md-12">
     <div class="input-group">
       <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Canción, Álbum, Artista...">
       <span class="input-group-btn">
@@ -7,12 +7,20 @@
       </span>
     </div>
   </div>
-  <div id="galley-albums" *ngIf="albums && albums !== null">
+  <div class="col-md-12">
     <ul class="album-list">
+      <h3 *ngIf="albums != null && albums">Albums</h3>
       <li *ngFor="let album of albums" class="col-lg-4 album-item">
         <album [album]=album (reloadParent)="reload($event)"></album>
       </li>
     </ul>
   </div>
-  <div class="clearfix"></div>
+  <div class="col-md-12">
+    <ul class="artists-list" *ngIf ="identity && identity.role == 'ROLE_ADMIN'">
+      <h3 *ngIf="artists != null && artists">Artistas</h3>
+      <li *ngFor="let artist of artists" class="col-lg-3 col-md-3 artist-item">
+        <artist [artist]=artist (reloadParent)="reload($event)"></artist>
+      </li>
+    </ul>
+  </div>
 </div>

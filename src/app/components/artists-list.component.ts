@@ -14,6 +14,7 @@ import { Artist } from '../models/artist';
 
 export class ArtistListComponent implements OnInit{
   public title: string;
+  public artist: Artist;
   public artists : Artist[];
   public identity;
   public token;
@@ -69,26 +70,7 @@ export class ArtistListComponent implements OnInit{
     });
   }
 
-public confirmado
-  onDeleteConfirm(id){
-    this.confirmado = id;
-  }
-
-  onCancelArtist(){
-    this.confirmado = null;
-  }
-
-  onDeleteArtist(id){
-    this._artistService.deleteArtist(this.token, id).subscribe(
-      (response) =>{
-        if(!response.artist){
-          alert('Error en el servidor');
-        }
-        this.getArtists();
-      },
-      (error) =>{
-        console.log(error)
-      }
-    );
+  reload(event):void{
+    this.getArtists();
   }
 }

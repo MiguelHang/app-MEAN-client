@@ -1,0 +1,14 @@
+<a [routerLink] = "['/artist-detail', artist._id]">
+  <div class="artist-image" [ngStyle]="{'background-image': 'url(' + url +'get-image-artist/' + artist.image + ')'}"></div>
+</a>
+<div class="artist-name">
+  <a [routerLink] = "['/artist-detail', artist._id]">{{artist.name}}</a>
+  <div class="buttons" *ngIf = "identity.role == 'ROLE_ADMIN'">
+    <a [routerLink] = "['/artist-edit', artist._id]" class="btn btn-sm btn-warning">Editar</a>
+    <a (click)="onDeleteConfirm(artist._id)" class="btn btn-sm btn-danger">Eliminar</a>
+  </div>
+</div>
+<div class="sure" *ngIf="confirmado == artist._id">
+  <a (click)="onDeleteArtist(artist._id)" class="btn btn-sm btn-danger">Eliminar</a>
+  <a (click)="onCancelArtist()" class="btn btn-sm btn-primary">Cancelar</a>
+</div>
