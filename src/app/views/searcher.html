@@ -7,7 +7,7 @@
       </span>
     </div>
   </div>
-  <div class="col-md-12">
+  <div class="col-md-12" *ngIf="albums != null && albums.length > 0">
     <ul class="album-list">
       <h3 *ngIf="albums != null && albums">Albums</h3>
       <li *ngFor="let album of albums" class="col-lg-4 album-item">
@@ -15,7 +15,7 @@
       </li>
     </ul>
   </div>
-  <div class="col-md-12">
+  <div class="col-md-12" *ngIf="artists != null && artists.length > 0">
     <ul class="artists-list" *ngIf ="identity && identity.role == 'ROLE_ADMIN'">
       <h3 *ngIf="artists != null && artists">Artistas</h3>
       <li *ngFor="let artist of artists" class="col-lg-3 col-md-3 artist-item">
