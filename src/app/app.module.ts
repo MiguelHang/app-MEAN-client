@@ -23,6 +23,7 @@ import{ AlbumComponent } from './components/album.component';
 
 import{ SongAddComponent } from './components/song-add.component';
 import{ SongEditComponent } from './components/song-edit.component';
+import{ SongComponent } from './components/song.component';
 
 import{ PlayerComponent} from './components/player.component';
 
@@ -31,6 +32,7 @@ import{ SearcherComponent} from './components/searcher.component';
 
 @NgModule({
   declarations: [
+    SongComponent,
     ArtistComponent,
     AlbumComponent,
     HomeComponent,
