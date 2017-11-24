@@ -88,6 +88,7 @@ export class SearcherComponent implements OnInit{
     this.searchArtists();
     this.searchSongs();
     this.searchAlbums();
+    console.log(this.songs)
   }
 
 }

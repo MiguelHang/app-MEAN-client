@@ -23,4 +23,14 @@
       </li>
     </ul>
   </div>
+  <div class="col-md-12" *ngIf="songs != null && songs.length > 0">
+    <div class="gallery-songs" *ngIf="songs">
+      <ul id="songs-list">
+        <h3 *ngIf="songs != null && songs">Canciones</h3>
+        <li *ngFor="let song of songs" class="song-item">
+          <song [song]=song ></song>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

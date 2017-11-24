@@ -37,4 +37,51 @@ export class SongComponent implements OnInit{
     console.log('song component cargado');
   }
 
+  public confirmado;
+  onDeleteConfirm(id){
+    this.confirmado = id;
+  }
+
+  onCancelSong(){
+    this.confirmado = null;
+  }
+
+  onDeleteSong(id){
+    this._songService.deleteSong(this.token, id).subscribe(
+      response => {
+        if(!response.song){
+            alert('Error en el servidor');
+        }
+
+        // this.getAlbum();
+      },
+      error => {
+        let errorMessage = <any>error;
+
+        if(errorMessage != null){
+          let body = JSON.parse(error._body)
+          // this.alertMessage = error._body.message;
+
+          console.log(error);
+        }
+      }
+    )
+  }
+
+  startPlayer(song){
+    console.log(song)
+    let songPlayer = JSON.stringify(song);
+    let filePath = this.url + 'get-song-file/' + song.file;
+    let imagePath = this.url + 'get-image-album/' + song.album.image;
+
+    localStorage.setItem('soundSong', songPlayer);
+    document.getElementById("mp3-source").setAttribute("src", filePath);
+    (document.getElementById("player") as any).load();
+    (document.getElementById("player") as any).play();
+
+    document.getElementById('play-song-title').innerHTML = song.name;
+    document.getElementById('play-song-artist').innerHTML = song.album.artist.name;
+    document.getElementById('play-image-album').setAttribute('src', imagePath);
+  }
+
 }
