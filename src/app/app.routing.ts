@@ -6,6 +6,7 @@ import{ HomeComponent } from './components/home.component';
 
 //import user
 import { UserEditComponent } from './components/user-edit.component';
+import { UserComponent } from './components/user.component';
 
 //import Artist
 import{ ArtistListComponent} from './components/artists-list.component';
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
   {path: 'artist-edit/:id', component: ArtistEditComponent},
   {path: 'artist-detail/:id', component: ArtistDetailComponent},
   {path: 'mis-datos', component: UserEditComponent},
+  {path: 'profile', component: UserComponent},
   {path: '', component: HomeComponent},
   {path: '**', component: HomeComponent}
 

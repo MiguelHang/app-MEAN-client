@@ -2,9 +2,10 @@
 <div class="col-lg-6">
   <h1>{{title}}</h1>
   <div *ngIf="alertMessage">
-    <div class="alert alert-info alert-dismissable">
+    <div class="alert alert-success alert-dismissable col-md-10">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong></strong>{{alertMessage}}
+      <strong>{{alertMessage}}</strong>
+      <button type="button" class="btn btn-sm btn-success pull-right" [routerLink]="['/profile']">Volver</button>
     </div>
   </div>
   <form #userUpdateForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-10">

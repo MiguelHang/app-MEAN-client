@@ -8,6 +8,7 @@ import{ routing, appRoutingProviders} from './app.routing';
 import{ HomeComponent } from './components/home.component';
 import { AppComponent } from './app.component';
 import{ UserEditComponent } from './components/user-edit.component';
+import{ UserComponent } from './components/user.component';
 
 import{ ArtistListComponent } from './components/artists-list.component';
 import{ ArtistAddComponent } from './components/artist-add.component';
@@ -32,6 +33,7 @@ import{ SearcherComponent} from './components/searcher.component';
 
 @NgModule({
   declarations: [
+    UserComponent,
     SongComponent,
     ArtistComponent,
     AlbumComponent,
