@@ -1,4 +1,6 @@
 <div class="artist-box" *ngIf="artist">
+  <button type="button" class="btn btn-warning pull-right" *ngIf="identity.role == 'ROLE_ADMIN' && editorMode == false" (click)="enterEditor()">Editar</button>
+  <button type="button" class="btn btn-success pull-right" *ngIf="identity.role == 'ROLE_ADMIN' && editorMode == true" (click)="enterEditor()">Volver</button>
   <div class="" id="artist-head-card">
     <div class="image">
       <img src="{{url +'get-image-artist/' + artist.image}}" *ngIf="artist.image && artist.image !== null">
@@ -15,7 +17,7 @@
   <div id="galley-albums" *ngIf="albums && albums !== null">
     <ul class="album-list">
       <li *ngFor="let album of albums" class="col-lg-4 album-item">
-        <album [album]=album (reloadParent)="reload($event)"></album>
+        <album [album]=album (reloadParent)="reload($event)" [editorMode]=editorMode></album>
       </li>
     </ul>
   </div>

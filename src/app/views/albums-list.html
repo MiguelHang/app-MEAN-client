@@ -1,4 +1,6 @@
 <div class="head-page" *ngIf = "identity">
+    <button type="button" class="btn btn-warning pull-right" *ngIf="identity.role == 'ROLE_ADMIN' && editorMode == false" (click)="enterEditor()">Editar</button>
+    <button type="button" class="btn btn-success pull-right" *ngIf="identity.role == 'ROLE_ADMIN' && editorMode == true" (click)="enterEditor()">Volver</button>
     <h1>{{title}}</h1>
     <a [routerLink] = "['/artist-add']" class="btn btn-default" *ngIf ="identity && identity.role == 'ROLE_ADMIN'"> Añadir Album</a>
     <!-- <ul class="pagination pull-right">
@@ -11,7 +13,7 @@
 <div id="galley-albums" *ngIf="albums && albums !== null">
   <ul class="album-list">
     <li *ngFor="let album of albums" class="col-lg-4 album-item">
-      <album [album]=album></album>
+      <album [album]=album [editorMode]=editorMode></album>
     </li>
   </ul>
 </div>

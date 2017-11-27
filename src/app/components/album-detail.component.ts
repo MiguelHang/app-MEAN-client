@@ -22,6 +22,8 @@ export class AlbumDetailComponent implements OnInit{
   public token;
   public url: string;
   public alertMessage;
+  public editorMode = false;
+
 
   constructor(
     private _route: ActivatedRoute,
@@ -83,6 +85,10 @@ export class AlbumDetailComponent implements OnInit{
         }
       )
     })
+  }
+
+  enterEditor(){
+    this.editorMode = !this.editorMode
   }
 
   // public confirmado;

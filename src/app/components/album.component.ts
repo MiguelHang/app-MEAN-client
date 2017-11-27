@@ -16,6 +16,7 @@ import  { AlbumService } from '../services/album.services';
 
 export class AlbumComponent implements OnInit{
   @Input() album: Album;
+  @Input() editorMode: boolean;
   @Output() reloadParent = new EventEmitter();
   public identity;
   public token;

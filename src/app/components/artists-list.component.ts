@@ -21,6 +21,8 @@ export class ArtistListComponent implements OnInit{
   public url: string;
   public next_page;
   public prev_page;
+  public editorMode = false;
+  
 
   constructor(
     private _route: ActivatedRoute,
@@ -72,5 +74,9 @@ export class ArtistListComponent implements OnInit{
 
   reload(event):void{
     this.getArtists();
+  }
+
+  enterEditor(){
+    this.editorMode = !this.editorMode
   }
 }

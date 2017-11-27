@@ -16,6 +16,7 @@ import  { SongService } from '../services/song.services';
 
 export class SongComponent implements OnInit{
   @Input() song: Song;
+  @Input() editorMode: boolean;
   @Output() reloadParent = new EventEmitter();
   public identity;
   public token;

@@ -1,4 +1,6 @@
 <div class="head-page" *ngIf = "identity">
+  <button type="button" class="btn btn-warning pull-right" *ngIf="identity.role == 'ROLE_ADMIN' && editorMode == false" (click)="enterEditor()">Editar</button>
+  <button type="button" class="btn btn-success pull-right" *ngIf="identity.role == 'ROLE_ADMIN' && editorMode == true" (click)="enterEditor()">Volver</button>
     <h1>{{title}}</h1>
     <a [routerLink] = "['/artist-add']" class="btn btn-default" *ngIf ="identity && identity.role == 'ROLE_ADMIN'"> Añadir Artista</a>
     <ul class="pagination pull-right">
@@ -9,6 +11,6 @@
 <div class="clearfix"></div>
 <ul class="artists-list" *ngIf ="identity">
   <li *ngFor="let artist of artists" class="col-lg-3 col-md-3 artist-item">
-    <artist [artist]=artist (reloadParent)="reload($event)"></artist>
+    <artist [artist]=artist (reloadParent)="reload($event)" [editorMode]=editorMode></artist>
   </li>
 </ul>

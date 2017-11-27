@@ -16,6 +16,7 @@ import  { ArtistService } from '../services/artist.services';
 
 export class ArtistComponent implements OnInit{
   @Input() artist: Artist;
+    @Input() editorMode: boolean;
   @Output() reloadParent = new EventEmitter();
   public identity;
   public token;

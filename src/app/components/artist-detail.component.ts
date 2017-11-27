@@ -22,6 +22,7 @@ export class ArtistDetailComponent implements OnInit{
   public token;
   public url: string;
   public alertMessage;
+  public editorMode = false;
 
   constructor(
     private _route: ActivatedRoute,
@@ -88,6 +89,10 @@ export class ArtistDetailComponent implements OnInit{
 
   reload(event):void{
     this.getArtist()
+  }
+
+  enterEditor(){
+    this.editorMode = !this.editorMode
   }
 
 }
