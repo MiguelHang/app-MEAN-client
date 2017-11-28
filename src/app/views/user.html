@@ -3,5 +3,24 @@
     <img src="{{url + 'get-image-user/' + user.image}}" class="img-responsive img-circle center-block" style="width: 200px"/>
     <h3>{{user.name + " " + user.surname}}</h3>
     <button type="button" class="btn btn-primary center-block" [routerLink]="['/mis-datos']">Editar</button>
-</div>
+  </div>
+  <!-- <button type="button" class="btn btn-success">Crear playList</button> -->
+  <form #formPlaylist="ngForm" (ngSubmit)="onSubmit()" *ngIf="!playlist._id">
+      <p>
+        <label>Nombre</label>
+        <input type="text" class="form-control" #playlistName="ngModel" name="playlistName" [(ngModel)]="playlist.name" required>
+        <span *ngIf = "!playlistName.valid && playlistName.touched" class="text-danger">El nombre es obligatorio</span>
+      </p>
+      <input type="submit" value="Crear Playlist" [disabled]="!formPlaylist.form.valid" class="btn btn-success"/>
+  </form>
+  <div class="" *ngIf="playlist._id">
+    <h3>Playlist: {{playlist.name}}</h3>
+    <div class="gallery-songs" *ngIf="songs">
+      <ul id="songs-list">
+        <li *ngFor="let song of songs" class="song-item">
+          <song [song]=song [editorMode]=editorMode></song>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
