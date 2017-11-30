@@ -1,5 +1,7 @@
 <div class="title">
   <a class="btn btn-success" (click)="startPlayer(song)"><i class="glyphicon glyphicon-play" aria-hidden="true"></i></a>
+  <a class="btn btn-link" (click)="addInPlaylist(song._id, song)" *ngIf="!song.playlist.includes(playlistUser._id)"><i class="glyphicon glyphicon-plus" data-toggle="tooltip" title="Añadir a playlist" aria-hidden="true"></i></a>
+  <a class="btn btn-link" (click)="pullPlaylist(song._id, song)" *ngIf="song.playlist.includes(playlistUser._id)"><i class="glyphicon glyphicon-minus" data-toggle="tooltip" title="Añadir a playlist" aria-hidden="true"></i></a>
   {{song.number + '. ' + song.name + ' - ' + song.duration}}
   <div class="buttons" *ngIf="identity && identity.role == 'ROLE_ADMIN' && editorMode == true">
     <a [routerLink] = "['/song-edit', song._id]" class="btn btn-warning"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></a>

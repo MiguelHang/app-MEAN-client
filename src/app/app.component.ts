@@ -4,6 +4,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { User } from './models/user';
 import { UserService } from './services/user.services';
+import { Playlist } from './models/playlist';
+import { PlaylistService } from './services/playlist.services';
 import  { GLOBAL } from './services/global';
 
 
@@ -11,7 +13,7 @@ import  { GLOBAL } from './services/global';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [UserService]
+  providers: [UserService, PlaylistService]
 })
 export class AppComponent implements OnInit{
   public title = 'Music app';
@@ -22,15 +24,18 @@ export class AppComponent implements OnInit{
   public errorMessage;
   public alertRegister;
   public url: string;
+  public playlist: Playlist;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _userService:UserService
+    private _userService:UserService,
+    private _playlistService:PlaylistService
   ){
     this.user = new User('','','','','','ROLE_USER','');
     this.user_register = new User('','','','','','ROLE_USER','');
     this.url = GLOBAL.url
+    this.playlist = new Playlist ('','','','')
   }
 
   ngOnInit(){
@@ -72,6 +77,26 @@ export class AppComponent implements OnInit{
               if(errorMessage != null){
                 let body = JSON.parse(error._body)
                 this.errorMessage = body.message;
+                console.log(error);
+              }
+            }
+          );
+
+          this._playlistService.getPlaylist(this.token, this.identity._id).subscribe(
+            response => {
+              this.playlist = response.playlist;
+              if(!response.playlist){
+                console.log('Error en el servidor al obtener la playlist');
+              }else{
+                console.log('El playlist se ha encontrado');
+                this.playlist = response.playlist
+                localStorage.setItem('PlaylistId', JSON.stringify(this.playlist));
+              }
+            },
+            error => {
+              let errorMessage = <any>error;
+              if(errorMessage != null){
+                console.log('Error al obtener la playlist del usuario');
                 console.log(error);
               }
             }

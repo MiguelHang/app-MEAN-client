@@ -5,13 +5,14 @@ import  { GLOBAL } from '../services/global';
 import  { UserService } from '../services/user.services';
 import { Song } from '../models/song';
 import  { SongService } from '../services/song.services';
+import  { PlaylistService } from '../services/playlist.services';
 
 
 
 @Component({
   selector:'song',
   templateUrl:'../views/song.html',
-  providers: [UserService, SongService]
+  providers: [UserService, SongService, PlaylistService]
 })
 
 export class SongComponent implements OnInit{
@@ -22,12 +23,14 @@ export class SongComponent implements OnInit{
   public token;
   public url: string;
   public alertMessage;
+  public playlistUser = JSON.parse(localStorage.getItem('PlaylistId'))
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-    private _songService: SongService
+    private _songService: SongService,
+    private _playlistService: PlaylistService
   ){
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
@@ -70,7 +73,6 @@ export class SongComponent implements OnInit{
   }
 
   startPlayer(song){
-    console.log(song)
     let songPlayer = JSON.stringify(song);
     let filePath = this.url + 'get-song-file/' + song.file;
     let imagePath = this.url + 'get-image-album/' + song.album.image;
@@ -83,6 +85,59 @@ export class SongComponent implements OnInit{
     document.getElementById('play-song-title').innerHTML = song.name;
     document.getElementById('play-song-artist').innerHTML = song.album.artist.name;
     document.getElementById('play-image-album').setAttribute('src', imagePath);
+  }
+
+  addInPlaylist(id, song){
+    let playlistId = localStorage.getItem("PlaylistId");
+    song.playlist.push(JSON.parse(playlistId)._id);
+      this._songService.editSong(this.token, id, song).subscribe(
+        response => {
+          if(!response.song){
+            this.alertMessage = 'Error en el servidor';
+          }else{
+            this.alertMessage = 'La canción se ha actualizado!';
+            this.song = response.song
+          }
+        },
+        error => {
+          let errorMessage = <any>error;
+
+          if(errorMessage != null){
+            // let body = JSON.parse(error._body)
+            this.alertMessage = error._body.message;
+            console.log(error);
+          }
+        }
+      );
+  }
+
+  pullPlaylist(id, song){
+    let playlistId = localStorage.getItem("PlaylistId");
+    song.playlist.forEach((item, index)=>{
+      if(item == JSON.parse(playlistId)._id){
+        song.playlist.splice(index);
+      }
+    })
+      this._songService.editSong(this.token, id, song).subscribe(
+        response => {
+          if(!response.song){
+            this.alertMessage = 'Error en el servidor';
+          }else{
+            this.alertMessage = 'La canción se ha actualizado!';
+            this.song = response.song
+            console.log(response.song)
+          }
+        },
+        error => {
+          let errorMessage = <any>error;
+
+          if(errorMessage != null){
+            // let body = JSON.parse(error._body)
+            this.alertMessage = error._body.message;
+            console.log(error);
+          }
+        }
+      );
   }
 
 }

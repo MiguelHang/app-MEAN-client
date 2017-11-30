@@ -33,14 +33,14 @@ export class PlaylistService{
     return this._http.get(this.url+'playlist/'+id, options). map( res => res.json());
   }
 
-  // editAlbum(token, id: string ,album: Album){
-  //   let params = JSON.stringify(album);
+  // editPlaylist(token, id: string ,playlist: Playlist){
+  //   let params = JSON.stringify(playlist);
   //   let headers = new Headers({
   //     'Content-Type':'application/json',
   //     'Authorization':token
   //   });
   //
-  //   return this._http.put(this.url + 'album/'+ id, params, {headers: headers}).map( res => res.json());
+  //   return this._http.put(this.url + 'playlist/'+ id, params, {headers: headers}).map( res => res.json());
   // }
 
   // getPlaylist(token, userPlaylistId){
