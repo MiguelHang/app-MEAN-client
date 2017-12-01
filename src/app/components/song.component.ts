@@ -20,6 +20,7 @@ export class SongComponent implements OnInit{
   @Input() editorMode: boolean;
   @Output() reloadParent = new EventEmitter();
   public identity;
+  public Math: any
   public token;
   public url: string;
   public alertMessage;
@@ -35,6 +36,7 @@ export class SongComponent implements OnInit{
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
+    this.Math = Math;
   }
 
   ngOnInit(){
@@ -95,7 +97,7 @@ export class SongComponent implements OnInit{
           if(!response.song){
             this.alertMessage = 'Error en el servidor';
           }else{
-            this.alertMessage = 'La canción se ha actualizado!';
+            this.alertMessage = 'Canción añadida a la playlist!';
             this.song = response.song
           }
         },
@@ -123,7 +125,7 @@ export class SongComponent implements OnInit{
           if(!response.song){
             this.alertMessage = 'Error en el servidor';
           }else{
-            this.alertMessage = 'La canción se ha actualizado!';
+            this.alertMessage = 'Canción eliminada de la playlist';
             this.song = response.song
             console.log(response.song)
           }
@@ -138,6 +140,31 @@ export class SongComponent implements OnInit{
           }
         }
       );
+  }
+
+  puntuation(points, song){
+    song.points = song.points + points
+    song.votes++
+    this._songService.editSong(this.token, song._id, song).subscribe(
+      response => {
+        if(!response.song){
+          this.alertMessage = 'Error en el servidor';
+        }else{
+          this.alertMessage = 'puntuada correctamenet';
+          this.song = response.song
+          console.log(response.song)
+        }
+      },
+      error => {
+        let errorMessage = <any>error;
+
+        if(errorMessage != null){
+          // let body = JSON.parse(error._body)
+          this.alertMessage = error._body.message;
+          console.log(error);
+        }
+      }
+    );
   }
 
 }

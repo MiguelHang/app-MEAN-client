@@ -240,6 +240,10 @@ html, body{
   margin-right: 7px;
 }
 
+.stars-color{
+  color: #f0b633;
+}
+
 /*PLayer*/
 
 .player{

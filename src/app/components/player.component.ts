@@ -55,7 +55,7 @@ export class PlayerComponent implements OnInit{
   ){
     this.url= GLOBAL.url;
     this.token = this._userService.getToken();
-    this.song = new Song(1, "", "", "", "");
+    this.song = new Song(1, "", "", "", "", 0, 0, []);
     this.sound = false;
   }
 
@@ -67,7 +67,7 @@ export class PlayerComponent implements OnInit{
     if(song){
       this.song = song
     }else{
-      this.song = new Song(1, "", "", "", "");
+      this.song = new Song(1, "", "", "", "", 0, 0, []);
     }
   }
 

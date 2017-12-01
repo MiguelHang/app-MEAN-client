@@ -7,7 +7,13 @@
     <a [routerLink] = "['/song-edit', song._id]" class="btn btn-warning"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></a>
     <a (click)="onDeleteConfirm(song._id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a>
   </div>
-
+  <span class="pull-right stars">
+    <a (click)="puntuation(1, song)" [ngClass]="[Math.round(song.points/song.votes) >= 1 ? 'stars-color' : '']" data-toggle="tooltip" title="{{song.votes + ' votos totales'}}"><i class="glyphicon glyphicon-star"></i></a>
+    <a (click)="puntuation(2, song)" [ngClass]="[Math.round(song.points/song.votes) >= 2 ? 'stars-color' : '']" data-toggle="tooltip" title="{{song.votes + ' votos totales'}}"><i class="glyphicon glyphicon-star"></i></a>
+    <a (click)="puntuation(3, song)" [ngClass]="[Math.round(song.points/song.votes) >= 3 ? 'stars-color' : '']" data-toggle="tooltip" title="{{song.votes + ' votos totales'}}"><i class="glyphicon glyphicon-star"></i></a>
+    <a (click)="puntuation(4, song)" [ngClass]="[Math.round(song.points/song.votes) >= 4 ? 'stars-color' : '']" data-toggle="tooltip" title="{{song.votes + ' votos totales'}}"><i class="glyphicon glyphicon-star"></i></a>
+    <a (click)="puntuation(5, song)" [ngClass]="[Math.round(song.points/song.votes) >= 5 ? 'stars-color' : '']" data-toggle="tooltip" title="{{song.votes + ' votos totales'}}"><i class="glyphicon glyphicon-star"></i></a>
+  </span>
   <div class="sure sure-song" *ngIf="confirmado == song._id">
     <a (click)="onDeleteSong(song._id)" class="btn btn-danger">Eliminar</a>
     <a (click)="onCancelSong()" class="btn btn-default">Cancelar</a>

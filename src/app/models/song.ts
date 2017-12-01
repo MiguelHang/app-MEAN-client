@@ -5,6 +5,8 @@ export class Song{
     public duration: string,
     public file: string,
     public album: string,
+    public votes: number,
+    public points: number,
     public playlist: any[]
   ){}
 }

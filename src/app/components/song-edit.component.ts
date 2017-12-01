@@ -35,7 +35,7 @@ export class SongEditComponent implements OnInit{
     this.url = GLOBAL.url;
     this.isEdit = true;
 
-    this.song = new Song(1, '', '', '', '');
+    this.song = new Song(1, '', '', '', '', 0, 0, []);
   }
 
   ngOnInit(){
