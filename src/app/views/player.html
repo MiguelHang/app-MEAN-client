@@ -1,6 +1,6 @@
 <div class='player'>
   <div class='album-image'>
-    <span *ngIf='song.album'>
+    <span *ngIf='song.album._id'>
       <img id='play-image-album' src="{{url + 'get-image-album/' + song.album.image}}">
     </span>
     <span *ngIf='!song.album'>
@@ -23,7 +23,7 @@
     </audio>
   </div>
   <div class="controls">
-    <span class="prevSong glyphicon glyphicon-backward" id="pres" (click)="nextSong(song.album._id, song.number-2)"></span>
+    <span class="prevSong glyphicon glyphicon-backward" id="pres" (click)="prevSong(song.album._id, song.number)"></span>
     <span *ngIf='!sound' class="playSong glyphicon glyphicon-play" id="play" (click)="playPause()"></span>
     <span *ngIf='sound' class="playSong glyphicon glyphicon-pause" id="play" (click)="playPause()"></span>
     <span class="nextSong glyphicon glyphicon-forward" id="next" (click)="nextSong(song.album._id, song.number)"></span>

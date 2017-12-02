@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,Input} from '@angular/core';
 import {Song} from '../models/song';
 import {GLOBAL} from '../services/global';
 import  { SongService } from '../services/song.services';
@@ -11,9 +11,8 @@ import  { UserService } from '../services/user.services';
 })
 
 export class PlayerComponent implements OnInit{
-
+  @Input() song: Song;
   public url: string;
-  public song;
   public sound: boolean;
   public token;
 
@@ -23,7 +22,7 @@ export class PlayerComponent implements OnInit{
   ){
     this.url= GLOBAL.url;
     this.token = this._userService.getToken();
-    this.song = new Song(1, "", "", "", "", 0, 0, []);
+    // this.song = new Song(1, "", "", "", "", 0, 0, []);
     this.sound = false;
 
   }
@@ -31,16 +30,16 @@ export class PlayerComponent implements OnInit{
   ngOnInit(){
     console.log('Player cargado')
 
-    let song = JSON.parse(localStorage.getItem('soundSong'));
-
-    if(song){
-      this.song = song
+    let songLast = JSON.parse(localStorage.getItem('soundSong'));
+    if(songLast){
+      this.song = songLast
     }else{
       this.song = new Song(1, "", "", "", "", 0, 0, []);
     }
   }
 
   playPause(){
+    this.song = JSON.parse(localStorage.getItem('soundSong'));
     let song = document.getElementsByTagName("audio")[0];
     this.sound = song.paused;
       if(this.sound){
@@ -55,16 +54,16 @@ export class PlayerComponent implements OnInit{
   }
 
   nextSong(albumId, songNumber){
-    this._songService.getNextSong(this.token, albumId, songNumber).subscribe(
+    this._songService.getNextSong(this.token, albumId, parseInt(songNumber)+1).subscribe(
       response => {
-        if(!response.song){
+        if(!response.song[0]){
           console.log('Error searching the song')
         }else{
-          this.song = response.song[0];
-
-          let songPlayer = JSON.stringify(this.song);
-          var filePath = this.url + 'get-song-file/' + this.song.file;
-          let imagePath = this.url + 'get-image-album/' + this.song.album.image;
+          let nextSong = response.song[0];
+          this.song = nextSong
+          let songPlayer = JSON.stringify(nextSong);
+          var filePath = this.url + 'get-song-file/' + nextSong.file;
+          let imagePath = this.url + 'get-image-album/' + nextSong.album.image;
 
           localStorage.setItem('soundSong', songPlayer);
 
@@ -72,8 +71,43 @@ export class PlayerComponent implements OnInit{
           (document.getElementById("player") as any).load();
           (document.getElementById("play").click());
 
-          document.getElementById('play-song-title').innerHTML = this.song.name;
-          document.getElementById('play-song-artist').innerHTML = this.song.album.artist.name;
+          document.getElementById('play-song-title').innerHTML = nextSong.name;
+          document.getElementById('play-song-artist').innerHTML = nextSong.album.artist.name;
+          document.getElementById('play-image-album').setAttribute('src', imagePath);
+        }
+      },
+      error => {
+        let errorMessage = <any>error;
+
+        if(errorMessage != null){
+          // let body = JSON.parse(error._body)
+          console.log(error);
+        }
+      }
+    );
+  }
+
+  prevSong(albumId, songNumber){
+    songNumber<2 ? songNumber=2 : songNumber
+    this._songService.getNextSong(this.token, albumId, parseInt(songNumber)-1).subscribe(
+      response => {
+        if(!response.song[0]){
+          console.log('Error searching the song')
+        }else{
+          let nextSong = response.song[0];
+          this.song = nextSong
+          let songPlayer = JSON.stringify(nextSong);
+          var filePath = this.url + 'get-song-file/' + nextSong.file;
+          let imagePath = this.url + 'get-image-album/' + nextSong.album.image;
+
+          localStorage.setItem('soundSong', songPlayer);
+
+          document.getElementById("mp3-source").setAttribute("src", filePath);
+          (document.getElementById("player") as any).load();
+          (document.getElementById("play").click());
+
+          document.getElementById('play-song-title').innerHTML = nextSong.name;
+          document.getElementById('play-song-artist').innerHTML = nextSong.album.artist.name;
           document.getElementById('play-image-album').setAttribute('src', imagePath);
         }
       },
