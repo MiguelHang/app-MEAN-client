@@ -52,7 +52,6 @@ export class SearcherComponent implements OnInit{
     this._albumService.getSearchAlbums(this.token, this.searchText).subscribe(
       (response) => {
         this.albums= response.albums
-        console.log(this.albums)
       },
       (error) => {
         console.log(error)
@@ -64,7 +63,6 @@ export class SearcherComponent implements OnInit{
     this._songService.getSearchSong(this.token, this.searchText).subscribe(
       (response) => {
         this.songs= response.songs
-        console.log(this.songs)
       },
       (error) => {
         console.log(error)
@@ -76,7 +74,6 @@ export class SearcherComponent implements OnInit{
     this._artistService.getSearchArtist(this.token, this.searchText).subscribe(
       (response) => {
         this.artists= response.artists
-        console.log(this.artists)
       },
       (error) => {
         console.log(error)
@@ -88,7 +85,6 @@ export class SearcherComponent implements OnInit{
     this.searchArtists();
     this.searchSongs();
     this.searchAlbums();
-    console.log(this.songs)
   }
 
 }

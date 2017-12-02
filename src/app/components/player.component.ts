@@ -6,39 +6,7 @@ import  { UserService } from '../services/user.services';
 
 @Component({
   selector: 'player',
-  template:`
-      <div class='player'>
-        <div class='album-image'>
-          <span *ngIf='song.album'>
-            <img id='play-image-album' src="{{url + 'get-image-album/' + song.album.image}}">
-          </span>
-          <span *ngIf='!song.album'>
-          <img id='play-image-album' src='assets/images/default.png'>
-          </span>
-        </div>
-        <div class="audio-file">
-          <span id="play-song-title">
-            {{song.name}}
-          </span>
-          |
-          <span id="play-song-artist">
-            <span *ngIf='song.artist'>
-              {{song.album.artist.name}}
-            </span>
-          </span>
-          <audio  id='player'>
-            <source id='mp3-source' src="{{url + 'get-song-file/' + song.file }}" type="audio/mpeg">
-            Tu navegador no es compatible
-          </audio>
-        </div>
-        <div class="controls">
-          <span class="prevSong glyphicon glyphicon-backward" id="pres" (click)="prevSong()"></span>
-          <span *ngIf='!sound' class="playSong glyphicon glyphicon-play" id="play" (click)="playPause()"></span>
-          <span *ngIf='sound' class="playSong glyphicon glyphicon-pause" id="play" (click)="playPause()"></span>
-          <span class="nextSong glyphicon glyphicon-forward" id="next" (click)="nextSong(song.album._id, song.number)"></span>
-        </div>
-      </div>
-    `,
+  templateUrl: '../views/player.html',
     providers: [UserService, SongService]
 })
 
@@ -57,6 +25,7 @@ export class PlayerComponent implements OnInit{
     this.token = this._userService.getToken();
     this.song = new Song(1, "", "", "", "", 0, 0, []);
     this.sound = false;
+
   }
 
   ngOnInit(){
@@ -79,17 +48,33 @@ export class PlayerComponent implements OnInit{
       }else{
         song.pause()
       }
+      //when song ended change next automatically
+      song.onended = function() {
+        (document.getElementById("next").click());
+    };
   }
 
   nextSong(albumId, songNumber){
     this._songService.getNextSong(this.token, albumId, songNumber).subscribe(
       response => {
-        this.song = response.song;
-
         if(!response.song){
           console.log('Error searching the song')
         }else{
-          this.song = response.song
+          this.song = response.song[0];
+
+          let songPlayer = JSON.stringify(this.song);
+          var filePath = this.url + 'get-song-file/' + this.song.file;
+          let imagePath = this.url + 'get-image-album/' + this.song.album.image;
+
+          localStorage.setItem('soundSong', songPlayer);
+
+          document.getElementById("mp3-source").setAttribute("src", filePath);
+          (document.getElementById("player") as any).load();
+          (document.getElementById("play").click());
+
+          document.getElementById('play-song-title').innerHTML = this.song.name;
+          document.getElementById('play-song-artist').innerHTML = this.song.album.artist.name;
+          document.getElementById('play-image-album').setAttribute('src', imagePath);
         }
       },
       error => {
@@ -101,10 +86,6 @@ export class PlayerComponent implements OnInit{
         }
       }
     );
-  }
-
-  prevSong(){
-    console.log('Anterior canción del album')
   }
 
 }
