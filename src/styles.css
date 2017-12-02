@@ -141,21 +141,21 @@ html, body{
 }
 
 .artist-item, .album-item{
-  width: 23%;
+  min-width: 23%;
   margin: 0px;
   padding: 0px;
-  height: 317px;
-  border: 1px solid #444;
+  height: 284px;
+  /*border: 1px solid #444;*/
   margin-left: 20px;
 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.2s;
-  margin-top: 2%;
+  margin-bottom: 5%;
 }
 
-.artist-item:hover, .album-item:hover{
+/*.artist-item:hover{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+}*/
 
 .artist-item .artist-image,
  .album-item .album-image{
@@ -187,7 +187,8 @@ html, body{
 }
 
 .album-item{
-    height: 357px;
+    margin-bottom: 5%;
+    width: 25%;
 }
 
 .album-item:last-child{
@@ -247,10 +248,10 @@ html, body{
 /*PLayer*/
 
 .player{
+  bottom: 20%;
   margin: 0;
   padding: 0;
   background: #1c1c1f;
-  /*background: RED;*/
   width: 100%;
   border-left: 1px solid #444;
   height: 12%;
@@ -285,6 +286,7 @@ html, body{
   width: 100%;
   padding: 0%;
   text-align: center;
+  bottom: 20%;
 }
 
 .prevSong, .playSong, .pauseSong, .nextSong{

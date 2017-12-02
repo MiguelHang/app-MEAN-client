@@ -27,8 +27,6 @@ export class UserComponent implements OnInit{
   public playlist: Playlist;
   public songs: Song[];
 
-
-
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
