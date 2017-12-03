@@ -7,6 +7,7 @@ import{ HomeComponent } from './components/home.component';
 //import user
 import { UserEditComponent } from './components/user-edit.component';
 import { UserComponent } from './components/user.component';
+import { UsersListComponent } from './components/users-list.component'
 
 //import Artist
 import{ ArtistListComponent} from './components/artists-list.component';
@@ -29,6 +30,7 @@ import{ SearcherComponent} from './components/searcher.component';
 
 const appRoutes: Routes = [
   {path: 'search', component: SearcherComponent},
+  {path: 'users', component: UsersListComponent},
   {path: 'song-edit/:id', component: SongEditComponent},
   {path: 'song-add/:album', component: SongAddComponent},
   {path: 'albums/:page', component: AlbumListComponent},

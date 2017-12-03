@@ -1,0 +1,23 @@
+<div class="head-page" *ngIf = "identity">
+    <!-- <button type="button" class="btn btn-warning pull-right" *ngIf="identity.role == 'ROLE_ADMIN' && editorMode == false" (click)="enterEditor()">Editar</button> -->
+    <!-- <button type="button" class="btn btn-success pull-right" *ngIf="identity.role == 'ROLE_ADMIN' && editorMode == true" (click)="enterEditor()">Volver</button> -->
+    <h1>{{title}}</h1>
+</div>
+<div class="clearfix"></div>
+<div id="gallery-songs" *ngIf="users">
+  <div class="alert alert-success" *ngIf="alertMessage">
+    <strong>{{alertMessage}}</strong>
+  </div>
+  <ul class="songs-list">
+    <li *ngFor="let user of users" class="col-lg-4 song-item" style="width: 100%;">
+      <h4>{{user.name}} | {{user.email}} tipo de usuario: {{user.role}}</h4>
+      <!-- <input type="text" class="form-control" [(ngModel)]="user.role" style="width: 50%; display: inline;"> -->
+      <select class="form-control" style="width: 50%; display: inline;">
+      <option *ngIf="user.role == 'ROLE_ADMIN'">ROLE_USER</option>
+      <option *ngIf="user.role == 'ROLE_USER'">ROLE_ADMIN</option>
+    </select>
+    
+      <button type="button" class="btn btn-success" (click)="onSubmit(user)">Guardar</button>
+    </li>
+  </ul>
+</div>

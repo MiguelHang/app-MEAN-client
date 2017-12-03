@@ -16,7 +16,7 @@ import  { GLOBAL } from './services/global';
   providers: [UserService, PlaylistService]
 })
 export class AppComponent implements OnInit{
-  public title = 'Music app';
+  public title = 'SoundClub';
   public user: User;
   public user_register: User;
   public identity;
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit{
   public alertRegister;
   public url: string;
   public playlist: Playlist;
+  public registro: boolean;
 
   constructor(
     private _route: ActivatedRoute,
@@ -36,6 +37,7 @@ export class AppComponent implements OnInit{
     this.user_register = new User('','','','','','ROLE_USER','');
     this.url = GLOBAL.url
     this.playlist = new Playlist ('','','','')
+    this.registro = false
   }
 
   ngOnInit(){
@@ -123,6 +125,10 @@ export class AppComponent implements OnInit{
     this.identity = null;
     this.token = null;
     this._router.navigate(['/']);
+  }
+
+  registroActive(){
+    this.registro = !this.registro;
   }
 
   onSubmitRegister(){

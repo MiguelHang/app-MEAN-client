@@ -9,6 +9,7 @@ import{ HomeComponent } from './components/home.component';
 import { AppComponent } from './app.component';
 import{ UserEditComponent } from './components/user-edit.component';
 import{ UserComponent } from './components/user.component';
+import{ UsersListComponent } from './components/users-list.component';
 
 import{ ArtistListComponent } from './components/artists-list.component';
 import{ ArtistAddComponent } from './components/artist-add.component';
@@ -40,6 +41,7 @@ import{ SearcherComponent} from './components/searcher.component';
     HomeComponent,
     AppComponent,
     UserEditComponent,
+    UsersListComponent,
     ArtistListComponent,
     ArtistAddComponent,
     ArtistEditComponent,
